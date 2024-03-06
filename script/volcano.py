@@ -40,7 +40,7 @@ def get_parser():
 
     parser.add_argument("-i",
                         dest="INPUT_FILE",
-                        help="path to prodective_capability.xls file",
+                        help="path to predictive_capability.tsv file",
                         type=lambda x: is_valid_file(parser, x))
     parser.add_argument("-o",
                         dest="OUTPUT_DIR",

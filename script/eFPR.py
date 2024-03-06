@@ -66,16 +66,18 @@ def main():
 
     df_res = None
     input_dir = args.INPUT_DIR
+    all_df_res = []
     for dir_name in os.listdir(input_dir):
         path_dir = os.path.join(input_dir, dir_name)
         if isdir(path_dir):
-            file_path = os.path.join(path_dir, 'predictive_capability.xls')
+            file_path = os.path.join(path_dir, 'predictive_capability.tsv')
             print("read: " + file_path)
             tmp = pd.read_csv(file_path, sep="\t")
             if df_res is None:
                 df_res = tmp
             else:
-                df_res = df_res.append(tmp)
+                all_df_res.append(tmp)
+    df_res = pd.concat(all_df_res)
 
     df_res.dropna(inplace=True)
     cutoff = np.quantile(
